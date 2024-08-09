@@ -1,0 +1,36 @@
+server:
+  port: 8898
+spring:
+  application:
+    name: scenario
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/scenario?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 020105Slk
+      hikari:
+        connection-timeout: 30000  # 连接超时时间为30秒
+        idle-timeout: 600000       # 连接空闲超时时间为10分钟
+        maximum-pool-size: 10      # 连接池中最大连接数为10
+        minimum-idle: 5            # 连接池中最小空闲连接数为5
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    # 开启mp日志输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+  mapper-locations: classpath*:mapper/**/*.xml
+
+project:
+  folder: D:/24PostGraduate/ConceptualScenario/scenario-backend
